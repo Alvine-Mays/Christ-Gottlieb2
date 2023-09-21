@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/bootstrap-5.3.1-dist/bootstrap-5.3.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets//fontawesome/css/all.css">
+
+    <title>Carte d'Anniversaire Interactive</title>
+
+    <style>
+        /* Réinitialisation des marges et des espacements */
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles de base */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #f39c12;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .centered-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* Espacement entre les images */
+        }
+
+        .centered-images img {
+            max-width: 100px;
+            /* Ajustez la largeur maximale selon vos besoins */
+            height: auto;
+        }
+
+        .gallery {
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .gallery h2 {
+            margin-bottom: 10px;
+        }
+
+        .photo {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f39c12;
+            color: white;
+        }
+
+        /* Style du formulaire */
+        form {
+            margin-top: 10px;
+        }
+
+        label,
+        textarea,
+        button {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        /* Styles des icônes de partage social */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icon {
+            display: inline-block;
+            margin: 0 10px;
+            color: #f39c12;
+            text-decoration: none;
+        }
+
+        /* Réglages d'images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles pour les bougies allumées */
+        .candle-lit {
+            animation: candleLight 1s infinite alternate;
+        }
+
+        @keyframes candleLight {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Style des icônes dans le footer */
+        .social-icon {
+            font-size: 24px;
+            /* Ajustez la taille de l'icône */
+            color: #333;
+            /* Couleur des icônes */
+            margin: 0 10px;
+            /* Espacement entre les icônes */
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>Joyeux Anniversaire à moi même, Alvine May's !</h1>
+        </div>
+        <div class="content">
+            <div class="centered-images">
+                <img src="./assets/img/ballons.jpeg" alt="Ballons festifs">
+                <img src="./assets/img/ballons.jpeg" alt="">
+                <img src="./assets/img/ballons.jpeg" alt="">
+            </div>
+            <p class="fw-bold">Chère Amis,</p>
+            <p>Même si nous ne pouvons pas être physiquement ensemble en ce jour spécial, je voulais vous envoyer toute
+                ma gratitude et mes vœux chaleureux. 🎉🎂🎈</p>
+            <p>Merci d'être toujours présents dans ma vie, et j'espère que cette carte vous apportera un peu de joie à
+                distance !</p>
+
+
+            <img src="./assets/img/candle.jpeg" alt="Bougie" class="candle">
+            <img src="./assets/img/candle.jpeg" alt="Bougie" class="candle">
+
+
+            <button id="toggleCandles"> <i class="fas fa-candle"></i> Allumer les bougies</button>
+
+            <script>
+                const toggleCandlesButton = document.getElementById("toggleCandles");
+                const candles = document.querySelectorAll(".candle");
+
+                toggleCandlesButton.addEventListener("click", function () {
+                    candles.forEach(candle => {
+                        candle.classList.toggle("candle-lit");
+                    });
+                });
+            </script>
+
+            <form id="messageForm">
+                <label for="message">Laisse un message :</label>
+                <textarea id="message" rows="4" cols="50"></textarea>
+                <button type="button" id="sendMessage">Envoyer</button>
+            </form>
+
+            <script>
+                document.getElementById("sendMessage").addEventListener("click", function () {
+                    const message = document.getElementById("message").value;
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappLink = `https://api.whatsapp.com/send?phone=242068457521&text=${encodedMessage}`;
+                    window.open(whatsappLink);
+                });
+            </script>
+
+        </div>
+        <div class="gallery">
+            <h2>Galerie de Photos</h2>
+            <div class="photo">
+                <img src="./assets/img/moi.jpg" alt="Photo 1">
+            </div>
+            <div class="photo">
+                <img src="./assets/img/moi2.jpg" alt="Photo 2">
+            </div>
+            <!-- Ajoute plus de photos ici -->
+        </div>
+        <div class="footer">
+            <p>Partage cette carte :</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/alvinemays.heagler" target="_blank" class="social-icon"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/alvineheagler/" target="_blank" class="social-icon"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
